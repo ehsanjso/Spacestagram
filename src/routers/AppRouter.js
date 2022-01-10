@@ -11,12 +11,12 @@ export const history = createBrowserHistory();
 const AppRouter = () => {
   return (
     <BrowserRouter history={history}>
-      {/* <NasaProvider> */}
-      <Routes>
-        <Route path="/" element={<Gallery />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      {/* </NasaProvider> */}
+      <NasaProvider>
+        <Routes>
+          <Route path="/" element={<Gallery />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </NasaProvider>
     </BrowserRouter>
   );
 };
