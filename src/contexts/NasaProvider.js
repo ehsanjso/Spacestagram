@@ -26,7 +26,7 @@ export function NasaProvider({ children }) {
         const { data } = await axios.get(
           `${host}/planetary/apod?api_key=${apiKey}&start_date=${startDate}&end_date=${endDate}`
         );
-        setPics(data);
+        setPics(data.reverse());
       } catch (error) {}
       setFetchInProg(false);
     }
