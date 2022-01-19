@@ -3,6 +3,8 @@ import axios from "axios";
 import { format, subDays } from "date-fns";
 import { host } from "../consts/host";
 import { useNavigate } from "react-router-dom";
+import { useSafeLocalStorage } from "../hooks/useSafeLocalStorage";
+import { find, propEq, curry, map, when, assoc } from "ramda";
 
 const NasaContext = React.createContext();
 
@@ -12,6 +14,7 @@ export function useNasa() {
 
 export function NasaProvider({ children }) {
   const navigation = useNavigate();
+  const [likes, setLikes] = useSafeLocalStorage("spacetogram-likes", []);
   const [pics, setPics] = useState([]);
   const [fetchInProg, setFetchInProg] = useState(true);
   const apiKey = process.env.REACT_APP_NASA_KEY;
@@ -33,8 +36,25 @@ export function NasaProvider({ children }) {
     getNasa();
   }, []);
 
+  const likePic = (pic) => {
+    const needUpdate = find(propEq("id", pic))(likes);
+    const alter = curry((checked, key, items) =>
+      map(when(propEq("id", key), assoc("liked", checked)), items)
+    );
+
+    let newLikes = [...likes];
+
+    if (needUpdate) {
+      newLikes = alter(!needUpdate.liked, pic, likes);
+    } else {
+      newLikes.push({ id: pic, liked: true });
+    }
+
+    setLikes(newLikes);
+  };
+
   return (
-    <NasaContext.Provider value={{ pics, fetchInProg }}>
+    <NasaContext.Provider value={{ pics, fetchInProg, likePic, likes }}>
       {children}
     </NasaContext.Provider>
   );

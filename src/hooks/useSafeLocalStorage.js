@@ -12,7 +12,7 @@ export function useSafeLocalStorage(key, initialValue) {
 
   const setValue = (value) => {
     try {
-      window.localStorage.setItem(key, value);
+      window.localStorage.setItem(key, JSON.stringify(value));
       setValueProxy(value);
     } catch {
       setValueProxy(value);

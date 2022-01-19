@@ -9,6 +9,8 @@ export default function Card({
   title,
   copyright,
   url,
+  likePic,
+  isLiked,
 }) {
   return (
     <div className="relative flex flex-col bg-gray-50 rounded-xl dark:bg-gray-800 dark:highlight-white/5 overflow-hidden my-6 shadow-md">
@@ -19,7 +21,12 @@ export default function Card({
       />
       <div className="md:p-4 flex justify-between items-center text-xl bg-gray-200/40 dark:bg-gray-900/40">
         <p>{title}</p>
-        <Heart />
+        <Heart
+          like={() => {
+            likePic(title);
+          }}
+          isLiked={isLiked}
+        />
       </div>
       <div className="mb-4 md:p-4 text-center md:text-left space-y-4">
         <p className="text-sm font-medium text-justify">{explanation}</p>
