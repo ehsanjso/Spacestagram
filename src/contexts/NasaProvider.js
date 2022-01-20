@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { format, subDays } from "date-fns";
 import { host } from "../consts/host";
-import { useNavigate } from "react-router-dom";
 import { useSafeLocalStorage } from "../hooks/useSafeLocalStorage";
 import { find, propEq, curry, map, when, assoc, reverse } from "ramda";
 
@@ -13,7 +12,6 @@ export function useNasa() {
 }
 
 export function NasaProvider({ children }) {
-  const navigation = useNavigate();
   const [likes, setLikes] = useSafeLocalStorage("spacetogram-likes", []);
   const [pics, setPics] = useState([]);
   const [fetchInProg, setFetchInProg] = useState(true);
@@ -34,6 +32,7 @@ export function NasaProvider({ children }) {
       setFetchInProg(false);
     }
     getNasa();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const likePic = (pic) => {
@@ -57,6 +56,7 @@ export function NasaProvider({ children }) {
     if (pageNumber > 0) {
       fetchMore();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNumber]);
 
   const fetchMore = useCallback(async () => {
