@@ -7,7 +7,6 @@ export default function Card({
   explanation,
   hdurl,
   title,
-  copyright,
   url,
   likePic,
   isLiked,
