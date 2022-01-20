@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Toggle } from "./Toggle";
+import Toggle from "./Toggle";
+import Github from "./Github";
 
 export default function Header() {
   return (
@@ -13,7 +14,10 @@ export default function Header() {
           Spacestagram
         </Link>
 
-        <Toggle />
+        <div className="flex justify-center items-center">
+          <Github />
+          <Toggle />
+        </div>
       </div>
     </nav>
   );

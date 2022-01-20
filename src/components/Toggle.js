@@ -1,7 +1,7 @@
 import React from "react";
 import { useDarkMode } from "../hooks/userDarkMode";
 
-export const Toggle = () => {
+const Toggle = () => {
   const [isDark, setIsDark] = useDarkMode();
 
   return (
@@ -37,3 +37,5 @@ export const Toggle = () => {
     </button>
   );
 };
+
+export default Toggle;
