@@ -8,22 +8,19 @@ You're going to need a NASA api key that you can get for free at <https://api.na
 
 1. Create a file at the root of the project named `.env`
 2. Add your api key to the file as follows `REACT_APP_NASA_KEY=<YOUR_API_KEY>`
-3. ```bash
+3.
 
-   ```
-
+```bash
 # If you use yarn
-
 yarn
 yarn start
-
-````
+```
 
 ```bash
 # If you use npm
 npm i
 npm run start
-````
+```
 
 ## Technologies and Design choices
 
